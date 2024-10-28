@@ -19,7 +19,7 @@ CC = cc
 all: nissy
 
 nissy: clean
-	${CC} ${CFLAGS} -o nissy src/*.c
+	${CC} ${CFLAGS} -o nissy src/*.c src/*.a
 
 nissy.exe:
 	x86_64-w64-mingw32-gcc ${CFLAGS} -static -o nissy.exe src/*.c

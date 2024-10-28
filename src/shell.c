@@ -111,7 +111,8 @@ launch(bool batchmode)
 		shell_argv[i] = malloc((MAXTOKENLEN+1) * sizeof(char));
 
 	if (!batchmode) {
-		fprintf(stderr, "Welcome to Nissy "VERSION".\n"
+		fprintf(stderr, "Welcome to rusty-nissy!\n"
+				"Rewrite it in rust, anyone? :)\n"
 				"Type \"commands\" for a list of commands.\n");
 	}
 

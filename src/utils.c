@@ -1,55 +1,6 @@
 #include "utils.h"
 
 void
-apply_permutation(int *perm, int *set, int n)
-{
-	int i;
-	int aux[n];
-
-	if (!is_perm(perm, n))
-		return;
-		
-	for (i = 0; i < n; i++)
-		aux[i] = set[perm[i]];
-
-	memcpy(set, aux, n * sizeof(int));
-}
-
-int
-binomial(int n, int k)
-{
-	if (n < 0 || k < 0 || k > n)
-		return 0;
-
-	return factorial(n) / (factorial(k) * factorial(n-k));
-}
-
-int
-digit_array_to_int(int *a, int n, int b)
-{
-	int i, ret = 0, p = 1;
-
-	for (i = 0; i < n; i++, p *= b)
-		ret += a[i] * p;
-
-	return ret;
-}
-
-int
-factorial(int n)
-{
-	int i, ret = 1;
-
-	if (n < 0)
-		return 0;
-
-	for (i = 1; i <= n; i++)
-		ret *= i;
-
-	return ret;
-}
-
-void
 index_to_perm(int p, int n, int *r)
 {
 	int i, j, c;
@@ -109,19 +60,6 @@ index_to_subset(int s, int n, int k, int *r)
 }
 
 void
-int_to_digit_array(int a, int b, int n, int *r)
-{
-	int i;
-
-	if (b <= 1)
-		for (i = 0; i < n; i++)
-			r[i] = 0;
-	else
-		for (i = 0; i < n; i++, a /= b)
-			r[i] = a % b;
-}
-
-void
 int_to_sum_zero_array(int x, int b, int n, int *a)
 {
 	int i, s = 0;
@@ -135,54 +73,6 @@ int_to_sum_zero_array(int x, int b, int n, int *a)
 		    s = (s + a[i]) % b;
 		a[n-1] = (b - s) % b;
 	}
-}
-
-int
-invert_digits(int a, int b, int n)
-{
-	int i, ret;
-	int r[n];
-
-	int_to_digit_array(a, b, n, r);
-	for (i = 0; i < n; i++)
-		r[i] = (b-r[i]) % b;
-
-	ret = digit_array_to_int(r, n, b);
-	return ret;
-}
-
-bool
-is_perm(int *a, int n)
-{
-	int i;
-	int aux[n];
-
-	for (i = 0; i < n; i++)
-		aux[i] = 0;
-	
-	for (i = 0; i < n; i++) {
-		if (a[i] < 0 || a[i] >= n)
-			return false;
-		else
-			aux[a[i]] = 1;
-	}
-
-	for (i = 0; i < n; i++)
-		if (!aux[i])
-			return false;
-
-	return true;
-}
-
-bool
-is_subset(int *a, int n, int k)
-{
-	int i, sum = 0;
-
-	for (i = 0; i < n; i++)
-		sum += a[i] ? 1 : 0;
-
-	return sum == k;
 }
 
 int
@@ -217,67 +107,3 @@ perm_to_index(int *a, int n)
 
 	return ret;
 }
-
-int
-powint(int a, int b)
-{
-	if (b < 0)
-		return 0;
-	if (b == 0)
-		return 1;
-
-	if (b % 2)
-		return a * powint(a, b-1);
-	else
-		return powint(a*a, b/2);
-}
-
-int 
-subset_to_index(int *a, int n, int k)
-{
-	int i, ret = 0;
-
-	if (!is_subset(a, n, k))
-		return binomial(n, k);
-
-	for (i = 0; i < n; i++) {
-		if (k == n-i)
-			return ret;
-		if (a[i]) {
-			ret += binomial(n-i-1, k);
-			k--;
-		}
-	}
-
-	return ret;
-}
-
-void
-sum_arrays_mod(int *src, int *dst, int n, int m)
-{
-	int i;
-
-	for (i = 0; i < n; i++)
-		dst[i] = (m <= 0) ? 0 : (src[i] + dst[i]) % m;
-}
-
-void
-swap(int *a, int *b)
-{
-	int aux;
-
-	aux = *a;
-	*a  = *b;
-	*b  = aux;
-}
-
-void
-swapu64(uint64_t *a, uint64_t *b)
-{
-	uint64_t aux;
-
-	aux = *a;
-	*a  = *b;
-	*b  = aux;
-}
-

@@ -3,3 +3,5 @@ doc/*.pdf
 experiments
 nissy
 nissy-*
+rusty/target
+src/*.a
