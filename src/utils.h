@@ -23,10 +23,4 @@
 #define MIN(a,b)            (((a) < (b)) ? (a) : (b))
 #define MAX(a,b)            (((a) > (b)) ? (a) : (b))
 
-void        index_to_perm(int p, int n, int *r);
-void        index_to_subset(int s, int n, int k, int *r);
-void        int_to_sum_zero_array(int x, int b, int n, int *a);
-int         perm_sign(int *a, int n);
-int         perm_to_index(int *a, int n);
-
 #endif
