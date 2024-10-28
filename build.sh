@@ -10,7 +10,7 @@ cargo build --release
 cp target/release/librusty.a ../src
 
 # Generate C bindings
-cbindgen --config cbindgen.toml --output ../src/rusty.h
+cbindgen --config cbindgen.toml --output ../src/rusty_utils.h
 
 # Navigate back to the original directory
 cd -

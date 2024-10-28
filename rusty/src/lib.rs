@@ -300,7 +300,7 @@ pub extern "C" fn sum_arrays_mod(src: *const i32, dst: *mut i32, n: i32, m: i32)
     r_sum_arrays_mod(src, dst, m);
 }
 
-// probably not needed when fully implemented in rust? 
+// probably not needed when f;y implemented in rust? 
 
 #[no_mangle]
 pub extern "C" fn swap(a: &mut i32, b: &mut i32) -> () {

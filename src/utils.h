@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "rusty.h"
+#include "rusty_utils.h"
 
 #define POW2TO6             64ULL
 #define POW2TO11            2048ULL
